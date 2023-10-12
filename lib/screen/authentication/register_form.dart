@@ -7,6 +7,8 @@ import 'package:myproject01/screen/authentication/sign_in_screen.dart';
 import 'package:myproject01/utils/authentication.dart';
 import 'package:myproject01/screen/home_screen.dart';
 
+import 'package:get/get.dart';
+
 class RegisterForm extends StatefulWidget {
   final FocusNode nameFocusNode;
   final FocusNode emailFocusNode;
@@ -146,16 +148,12 @@ class RegisterFormState extends State<RegisterForm> {
                             password: _passwordController.text.trim(),
                             context: context,
                           );
-
+                          /*----------------------------------------------
+                            계정 생성 -> 성공 메시지 표시 -> 로그인 페이지로 이동
+                          ----------------------------------------------*/
                           if (user != null) {
-                            debugPrint('Step 1');
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(
-                                  user: user,
-                                ),
-                              ),
-                            );
+                            debugPrint('register succeed');
+                            Get.offAll(() => SignInScreen());
                           }
                         }
 

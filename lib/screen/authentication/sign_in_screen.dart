@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myproject01/firebase_options.dart';
+import 'package:myproject01/screen/authentication/user_info_screen.dart';
 import 'package:myproject01/screen/common/resource/custom_colors.dart';
 import 'package:myproject01/screen/authentication/sign_in_form.dart';
 import 'package:myproject01/screen/home_screen.dart';
@@ -27,7 +28,15 @@ class SignInScreenState extends State<SignInScreen> {
 
     if (user != null) {
       if (!mounted) return firebaseApp;
-      Get.offAll(() =>  HomeScreen(user: user));
+
+      if(user.emailVerified) {
+        debugPrint('SignInScreenState user.emailVerified');
+        Get.offAll(() => HomeScreen(user: user));
+      }
+      else{
+        debugPrint('SignInScreenState !user.emailVerified');
+        Get.offAll(() => UserInfoScreen(user: user));
+      }
     }
 
     return firebaseApp;
@@ -92,7 +101,7 @@ class SignInScreenState extends State<SignInScreen> {
                           return const Text('Error initializing Firebase');
                         } else if (snapshot.connectionState ==
                             ConnectionState.done) {
-                          debugPrint('once complete, sign out 과정을 통해야 로그인 창으로 감');
+
                           return SignInForm(
                             emailFocusNode: _emailFocusNode,
                             passwordFocusNode: _passwordFocusNode,

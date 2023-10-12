@@ -5,6 +5,7 @@ import 'package:myproject01/screen/common/app_bar_title.dart';
 
 import 'package:myproject01/utils/authentication.dart';
 import 'sign_in_screen.dart';
+import 'package:get/get.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User user})
@@ -215,6 +216,7 @@ class UserInfoScreenState extends State<UserInfoScreen> {
                             _user = user;
                             _isEmailVerified = user.emailVerified;
                           });
+                          Get.offAll(() => SignInScreen());
                         }
                       },
                     ),

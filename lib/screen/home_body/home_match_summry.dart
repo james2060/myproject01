@@ -5,6 +5,8 @@ import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:myproject01/screen/authentication/sign_in_screen.dart';
 import 'package:myproject01/screen/home_body/title_view.dart';
+import 'package:myproject01/utils/popup_dialog.dart';
+import 'package:myproject01/screen/home_body/next_match_view.dart';
 
 class HomeMatchSummary extends StatefulWidget {
 
@@ -60,7 +62,7 @@ class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProvider
     super.initState();
   }
   void addAllListData(){
-    const int count =  9;
+    const int count =  6;
     listViews.add(
         TitleView(
           titleTxt: 'Next Match',
@@ -72,6 +74,82 @@ class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProvider
           animationController: widget.animationController!,
         )
     );
+
+    listViews.add(
+      NextMatchView(
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!
+      ),
+    );
+    listViews.add(
+        TitleView(
+          titleTxt: 'News',
+          subTxt: 'Details',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!,
+        )
+    );
+
+    listViews.add(
+      NextMatchView(
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!
+      ),
+    );
+
+    listViews.add(
+        TitleView(
+          titleTxt: 'Next Match',
+          subTxt: 'Details',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!,
+        )
+    );
+
+    listViews.add(
+      NextMatchView(
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!
+      ),
+    );
+
+    listViews.add(
+        TitleView(
+          titleTxt: 'Next Match',
+          subTxt: 'Details',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!,
+        )
+    );
+
+    listViews.add(
+      NextMatchView(
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!
+      ),
+    );
+
   }
   @override
   Widget build(BuildContext context) {
@@ -111,6 +189,7 @@ class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProvider
       },
     );
   }
+
 
   Widget getAppBarUI() {
     return Column(
@@ -216,13 +295,18 @@ class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProvider
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(32.0)),
                                 onTap: () async {
-                                  await FirebaseAuth.instance.signOut();
 
+                                  bool result = await showAlertDialog(context, "로그아웃 하시겠습니까?", "");
+                                  if(result){
+                                    await FirebaseAuth.instance.signOut();
+                                   // Get.to(SignInScreen());
+                                    Get.offAll(SignInScreen());
+                                    debugPrint("FirebaseAuth sign out...");
+                                  }
+                                  else{
+                                    debugPrint("Cancel to logout...");
+                                  }
                                   if (!mounted) return;
-
-                                  Get.to(SignInScreen());
-                                  // Navigator.of(context)
-                                  //     .pushReplacement(_routeToSignInScreen());
                                 },
                                 child: Center(
                                   child: Icon(

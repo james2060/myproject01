@@ -114,8 +114,17 @@ class SignInFormState extends State<SignInForm> {
                           );
 
                           if (user != null) {
-                            debugPrint('signin ... user is not null');
-                              Get.offAll(() => HomeScreen(user: user));
+                            if(user.emailVerified)
+                              {
+                                debugPrint("email is verified");
+                                Get.offAll(() => HomeScreen(user: user));
+                              }
+                            else {
+                              debugPrint('email is not verified');
+                              Get.offAll(() =>
+                                  UserInfoScreen(
+                                      user: user)); //HomeScreen(user: user));
+                            }
                           }
                           else{
                             debugPrint('user is null');
