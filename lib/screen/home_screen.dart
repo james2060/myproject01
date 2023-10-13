@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:myproject01/apptheme.dart';
 import 'package:myproject01/model/bottom_tab_icon_data.dart';
 import 'package:myproject01/screen/bottombar_navigation.dart';
-import 'package:myproject01/screen/home_body/home_match_summry.dart';
+import 'package:myproject01/screen/home_body/home_body_main.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required User user})
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen>
       tabIconsList[0].isSelected = true;
 
       animationController = AnimationController(duration: const Duration(microseconds: 600), vsync: this);
-      tabBody = HomeMatchSummary(animationController: animationController);
+      tabBody = HomeBodyMain(animationController: animationController);
     super.initState();
   }
   @override
@@ -66,25 +66,48 @@ class _HomeScreenState extends State<HomeScreen>
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 2) {
+            //Home
+            if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
-                  debugPrint('index == 0 || index == 2 mount is false');
+                  debugPrint('index == 0  mount is false');
                   return;
                 }
                 setState(() {
-                  debugPrint('index == 0 || index == 2');
-                  tabBody = HomeMatchSummary(animationController: animationController);
+                  debugPrint('index == 0');
+                  tabBody = HomeBodyMain(animationController: animationController);
                 });
               });
-            } else if (index == 1 || index == 3) {
+            } else if (index == 1) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
-                  debugPrint('index == 1 || index == 3 mount is false');
+                  debugPrint('index == 1 mount is false');
                   return;
                 }
                 setState(() {
-                  debugPrint('index == 1 || index == 3');
+                  debugPrint('index == 1');
+                  //tabBody = TrainingScreen(animationController: animationController);
+                });
+              });
+            } else if (index == 2) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  debugPrint('index == 2 mount is null');
+                  return;
+                }
+                setState(() {
+                  debugPrint('index == 2');
+                  //tabBody = TrainingScreen(animationController: animationController);
+                });
+              });
+            } else if (index == 3) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  debugPrint('index == 3 mount is null');
+                  return;
+                }
+                setState(() {
+                  debugPrint('index == 3');
                   //tabBody = TrainingScreen(animationController: animationController);
                 });
               });

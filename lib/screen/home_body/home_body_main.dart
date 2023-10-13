@@ -4,21 +4,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:myproject01/screen/authentication/sign_in_screen.dart';
+import 'package:myproject01/screen/home_body/home_news_summary_view.dart';
 import 'package:myproject01/screen/home_body/title_view.dart';
 import 'package:myproject01/utils/popup_dialog.dart';
 import 'package:myproject01/screen/home_body/next_match_view.dart';
 
-class HomeMatchSummary extends StatefulWidget {
+class HomeBodyMain extends StatefulWidget {
 
-  const HomeMatchSummary({this.animationController});
+  const HomeBodyMain({this.animationController});
 
   final AnimationController? animationController;
 
   @override
-  _HomeMatchSummeryState createState() => _HomeMatchSummeryState();
+  _HomeBodyMainState createState() => _HomeBodyMainState();
 }
 
-class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProviderStateMixin {
+class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMixin {
 
   Animation<double>? topBarAnimation;
   String club_name = 'Greens';
@@ -97,7 +98,7 @@ class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProvider
     );
 
     listViews.add(
-      NextMatchView(
+      HomeNewsSummaryView(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
               parent: widget.animationController!,
               curve:
@@ -105,51 +106,6 @@ class _HomeMatchSummeryState extends State<HomeMatchSummary> with TickerProvider
           animationController: widget.animationController!
       ),
     );
-
-    listViews.add(
-        TitleView(
-          titleTxt: 'Next Match',
-          subTxt: 'Details',
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-              parent: widget.animationController!,
-              curve:
-              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!,
-        )
-    );
-
-    listViews.add(
-      NextMatchView(
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-              parent: widget.animationController!,
-              curve:
-              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!
-      ),
-    );
-
-    listViews.add(
-        TitleView(
-          titleTxt: 'Next Match',
-          subTxt: 'Details',
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-              parent: widget.animationController!,
-              curve:
-              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!,
-        )
-    );
-
-    listViews.add(
-      NextMatchView(
-          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-              parent: widget.animationController!,
-              curve:
-              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
-          animationController: widget.animationController!
-      ),
-    );
-
   }
   @override
   Widget build(BuildContext context) {
