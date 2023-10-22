@@ -7,4 +7,6 @@ class Palette {
   static const Color firebaseYellow = Color(0xFFFFCA28);
   static const Color firebaseGrey = Color(0xFFECEFF1);
   static const Color googleBackground = Color(0xFF4285F4);
+  static const Color mainGreenBackground = Color(0xff04754d);
+
 }

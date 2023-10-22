@@ -1,0 +1,5 @@
+flutter_native_splash:
+  color: "#04754d"
+  image: assets/splash/GreensLogo.png
+  fullscreen: true
+

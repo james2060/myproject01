@@ -7,6 +7,7 @@ import 'package:myproject01/screen/common/resource/custom_colors.dart';
 import 'package:myproject01/screen/authentication/sign_in_form.dart';
 import 'package:myproject01/screen/home_screen.dart';
 import 'package:get/get.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class SignInScreenState extends State<SignInScreen> {
+
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
