@@ -5,11 +5,12 @@ import 'package:myproject01/screen/authentication/sign_in_screen.dart';
 import 'package:myproject01/utils/constants.dart';
 import 'package:get/get.dart';
 import 'package:myproject01/controller/auth_controller.dart';
+import 'package:myproject01/controller/match_controller.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 Future<void> main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await firebaseInitialization.then((value) => {
       //Get.put(AuthController()),
@@ -29,7 +30,7 @@ Future<void> main() async {
     print('go!');
     FlutterNativeSplash.remove();
   }
-  initialization();
+  //initialization();
 
   runApp(GreensApp());
 }

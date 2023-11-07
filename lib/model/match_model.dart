@@ -16,7 +16,7 @@ class MatchSchedule {
   });
 
   factory MatchSchedule.fromJson(Map<String, dynamic> json) => MatchSchedule(
-    matchinfo: json["matchinfo"] == null ? null : Matchinfo.fromJson(json["matchinfo"]),
+    matchinfo: json == null ? null : Matchinfo.fromJson(json),
   );
 
   Map<String, dynamic> toJson() => {
@@ -25,37 +25,41 @@ class MatchSchedule {
 }
 
 class Matchinfo {
-  DateTime? date;
-  DateTime? starttime;
-  DateTime? endtime;
-  String? location;
-  String? team1;
-  String? team2;
+  DateTime starttime;
+  DateTime endtime;
+  String location;
+  String team1Name;
+  String team2Name;
+  String team1Score;
+  String team2Score;
 
   Matchinfo({
-    this.date,
-    this.starttime,
-    this.endtime,
-    this.location,
-    this.team1,
-    this.team2,
+    required this.starttime,
+    required this.endtime,
+    required this.location,
+    required this.team1Name,
+    required this.team2Name,
+    required this.team1Score,
+    required this.team2Score,
   });
 
   factory Matchinfo.fromJson(Map<String, dynamic> json) => Matchinfo(
-    date: json["date"] == null ? null : DateTime.parse(json["date"]),
-    starttime: json["starttime"] == null ? null : DateTime.parse(json["starttime"]),
-    endtime: json["endtime"] == null ? null : DateTime.parse(json["endtime"]),
+    starttime: DateTime.parse(json["starttime"]),
+    endtime: DateTime.parse(json["endtime"]),
     location: json["location"],
-    team1: json["team1"],
-    team2: json["team2"],
+    team1Name: json["team1_name"],
+    team2Name: json["team2_name"],
+    team1Score: json["team1_score"],
+    team2Score: json["team2_score"],
   );
 
   Map<String, dynamic> toJson() => {
-    "date": date?.toIso8601String(),
-    "starttime": starttime?.toIso8601String(),
-    "endtime": endtime?.toIso8601String(),
+    "starttime": starttime.toIso8601String(),
+    "endtime": endtime.toIso8601String(),
     "location": location,
-    "team1": team1,
-    "team2": team2,
+    "team1_name": team1Name,
+    "team2_name": team2Name,
+    "team1_score": team1Score,
+    "team2_score": team2Score,
   };
 }

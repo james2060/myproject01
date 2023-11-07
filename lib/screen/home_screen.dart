@@ -4,12 +4,13 @@ import 'package:myproject01/apptheme.dart';
 import 'package:myproject01/model/bottom_tab_icon_data.dart';
 import 'package:myproject01/screen/bottombar_navigation.dart';
 import 'package:myproject01/screen/home_body/home_body_main.dart';
+import 'package:myproject01/screen/next_match_details_screen.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required User user})
       : _user = user,
         super(key: key);
-
   final User _user;
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen>
 
       animationController = AnimationController(duration: const Duration(microseconds: 600), vsync: this);
       tabBody = HomeBodyMain(animationController: animationController);
+
     super.initState();
   }
   @override
@@ -86,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen>
                 }
                 setState(() {
                   debugPrint('index == 1');
+                  tabBody = NexMatchDetails(title: 'MatchList',animationController: animationController);
                   //tabBody = TrainingScreen(animationController: animationController);
                 });
               });

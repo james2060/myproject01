@@ -1,11 +1,13 @@
 {
   "matchinfo":
   {
-    "date":"2023-07-31 07:00:00",
-    "starttime": "2023-07-31 09:00:00",
+    "starttime":"2023-07-31 07:00:00",
     "endtime" :  "2023-07-31 11:00:00",
     "location":"서울디지털운동장",
-    "team1": "GridFC",
-    "team2": "스트레인져스"
+    "team1_name": "GridFC",
+    "team2_name": "스트레인져스",
+    "team1_score": "0",
+    "team2_score": "0"
+
   }
 }

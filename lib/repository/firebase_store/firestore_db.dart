@@ -26,12 +26,13 @@ class FirestoreDb{
   }
 
   //경기 전체 일정
-  static Future<List<MatchSchedule> > fetchMatchList(String teamid) async {
+  static Future<List<MatchSchedule> > fetchMatchList(int teamid) async {
 
     List<MatchSchedule> matchschedule = [];
 
-    CollectionReference<Map<String, dynamic>> collectionReference = FirebaseFirestore.instance.collection("matchdate");
-      QuerySnapshot<Map<String, dynamic>> querySnapshot = await collectionReference.orderBy("matchdate.startdate",descending: true)
+    CollectionReference<Map<String, dynamic>> collectionReference = FirebaseFirestore.instance.collection("matchinfo");
+      QuerySnapshot<Map<String, dynamic>> querySnapshot
+      = await collectionReference
           .get();
 
       matchschedule.clear();

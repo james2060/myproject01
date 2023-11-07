@@ -8,12 +8,12 @@ import 'package:myproject01/screen/home_body/home_news_summary_view.dart';
 import 'package:myproject01/screen/home_body/title_view.dart';
 import 'package:myproject01/utils/popup_dialog.dart';
 import 'package:myproject01/screen/home_body/next_match_view.dart';
-
+import 'package:myproject01/controller/match_controller.dart';
 class HomeBodyMain extends StatefulWidget {
 
   const HomeBodyMain({this.animationController});
 
-  final AnimationController? animationController;
+    final AnimationController? animationController;
 
   @override
   _HomeBodyMainState createState() => _HomeBodyMainState();
@@ -28,8 +28,10 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
 
+
   @override
   void initState() {
+
     debugPrint("HomeMatchSummeryState - initState");
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
@@ -75,7 +77,6 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
           animationController: widget.animationController!,
         )
     );
-
     listViews.add(
       NextMatchView(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -96,7 +97,6 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
           animationController: widget.animationController!,
         )
     );
-
     listViews.add(
       HomeNewsSummaryView(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
