@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:myproject01/apptheme.dart';
 import 'package:myproject01/model/match_model.dart';
 import 'package:myproject01/blocs/Matchbloc.dart';
-
+import 'package:myproject01/screen/authentication/sign_in_screen.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:myproject01/utils/popup_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 class NexMatchDetails extends StatefulWidget {
   final AnimationController? animationController;
 
@@ -62,37 +66,170 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
     //addSampleMatchInfo();
     super.initState();
   }
+  Widget getAppBarUI() {
+    return Column(
+      children: <Widget>[
+        AnimatedBuilder(
+          animation: widget.animationController!,
+          builder: (BuildContext context, Widget? child) {
+            return FadeTransition(
+              opacity: topBarAnimation!,
+              child: Transform(
+                transform: Matrix4.translationValues(
+                    0.0, 30 * (1.0 - topBarAnimation!.value), 0.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: apptheme.white.withOpacity(topBarOpacity),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(32.0),
+                    ),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: apptheme.grey
+                              .withOpacity(0.4 * topBarOpacity),
+                          offset: const Offset(1.1, 1.1),
+                          blurRadius: 10.0),
+                    ],
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: MediaQuery.of(context).padding.top,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                            top: 16 - 8.0 * topBarOpacity,
+                            bottom: 12 - 8.0 * topBarOpacity),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  club_name,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontFamily: apptheme.fontName,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 22 + 6 - 6 * topBarOpacity,
+                                    letterSpacing: 1.2,
+                                    color: apptheme.darkerText,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 38,
+                              width: 38,
+                              child: InkWell(
+                                highlightColor: Colors.transparent,
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(32.0)),
+                                onTap: () {},
+                                child: Center(
+                                  child: badges.Badge(
+                                    position: badges.BadgePosition.topEnd(top: 0, end: 3),
+                                    badgeAnimation: badges.BadgeAnimation.slide(
+                                    ),
+                                    badgeStyle: badges.BadgeStyle(
+                                      badgeColor: Colors.redAccent,
+                                    ),
+                                    badgeContent: Text(
+                                      //notification count 표시
+                                      "1",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    child: IconButton(icon: Icon(Icons.notifications),
+                                        onPressed: () {
+                                          //스크린을 이동해서 사용자가 알림을 확인한다.
+                                          //읽은 것만 카운팅해서 없애야 한다.
+                                        }),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 8,
+                                right: 8,
+                              ),
+                              child: Row(
+                                children: <Widget>[
+                                ],
+                              ),
+                            ),
+                            //로그아웃 버튼 클릭 시 SignInScreen 페이지로 이동
+                            SizedBox(
+                              height: 38,
+                              width: 38,
+                              child: InkWell(
+                                highlightColor: Colors.transparent,
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(32.0)),
+                                onTap: () async {
+
+                                  bool result = await showAlertDialog(context, "로그아웃 하시겠습니까?", "");
+                                  if(result){
+                                    await FirebaseAuth.instance.signOut();
+                                    // Get.to(SignInScreen());
+                                    Get.offAll(SignInScreen());
+                                    debugPrint("FirebaseAuth sign out...");
+                                  }
+                                  else{
+                                    debugPrint("Cancel to logout...");
+                                  }
+                                  if (!mounted) return;
+                                },
+                                child: Center(
+                                  child: Icon(
+                                    Icons.logout,
+                                    color: apptheme.grey,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        )
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     bloc.fetchAllMatch();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Next Matche Deatails'),
-        centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.refresh), onPressed: (){
-          bloc.fetchAllMatch();
-        }),
-        actions: [
-          IconButton(icon: Icon(Icons.add_task), onPressed: (){
 
-          }),
-          IconButton(icon: Icon(Icons.add_moderator), onPressed: null),
-        ],
-      ),
-      body: StreamBuilder<List<MatchSchedule>>(
-        //모든 경기 리스트를 가져온다.
-        stream: bloc.allMatch,
-        builder: (context, AsyncSnapshot<List<MatchSchedule>> snapshot) {
-          if (snapshot.hasData) {
-            return buildList(snapshot);
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          return Center(child: CircularProgressIndicator());
-        },
-      ),
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: <Widget>[
+              StreamBuilder<List<MatchSchedule>>(
+                //모든 경기 리스트를 가져온다.
+                stream: bloc.allMatch,
+                builder: (context, AsyncSnapshot<List<MatchSchedule>> snapshot) {
+                  if (snapshot.hasData) {
+                    return buildList(snapshot);
+                  } else if (snapshot.hasError) {
+                    return Text(snapshot.error.toString());
+                  }
+                  return Center(child: CircularProgressIndicator());
+                },
+              ),
+              getAppBarUI(),
+              SizedBox(height: MediaQuery.of(context).padding.bottom,)
+            ],
+          )
     );
   }
   //데이터를 그리드뷰에 출력하는 함수
@@ -101,7 +238,14 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
     List<MatchSchedule> matchlist=snapshot.data!;
 
     return FutureBuilder<bool>(
+
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        Text('Matchs',
+            style: TextStyle(
+              fontFamily: "Open Sans",
+              color: Color(0xff000000),
+              fontSize: 12,
+            ));
         return ListView.builder(
           controller: scrollController,
           padding: EdgeInsets.only(
@@ -121,7 +265,6 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(matchlist[index].matchinfo!.starttime.toString()!),
                     SizedBox(height: 10),
                     ListTile(
                       leading: FlutterLogo(size: 72.0),
@@ -154,4 +297,5 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
       bloc.addMatchinfo(date);
     }
   }
+
 }
