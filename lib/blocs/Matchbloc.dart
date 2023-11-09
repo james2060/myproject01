@@ -14,6 +14,9 @@ class MatchBloc {
     List<MatchSchedule> matchInfoModel = await _repository.fetchAllMatchInfo();
     _matchinfoFetcher.sink.add(matchInfoModel);
   }
+  addMatchinfo(String date) async {
+    await _repository.addMatchInfo(date);
+  }
   dispose() {
     _matchinfoFetcher.close();
   }

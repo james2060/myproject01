@@ -9,7 +9,7 @@ class MatchApiProvider {
 
   Future<List<MatchSchedule> > fetchMatchList() async {
     CollectionReference<Map<String, dynamic>> collectionReference = FirebaseFirestore.instance.collection("matchinfo");
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await collectionReference.orderBy("date",descending: true)
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await collectionReference.orderBy("starttime",descending: true)
         .get();
 
     ms.clear();
@@ -21,6 +21,22 @@ class MatchApiProvider {
     print("match list size: $itemcount");
 
     return ms;
+  }
+
+  //경기 일정 등록.
+  Future<void> AddMatchSchedule(String date) async {
+    FirebaseFirestore _f = FirebaseFirestore.instance;
+    await _f.collection("matchinfo").doc(date).set(
+      {
+          "starttime": "2023-11-04 07:00:00",
+          "endtime": "2023-11-04 11:00:00",
+          "location": "서울디지털운동장",
+          "team1name": "그리드",
+          "team2name": "시큐아이",
+          "team1score": "0",
+          "team2score": "0"
+      }
+    );
   }
 
 }

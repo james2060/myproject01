@@ -29,7 +29,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
   @override
   void initState() {
 
-    debugPrint("HomeMatchSummeryState - initState");
+    debugPrint("_NexMatchDetailsState - initState");
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
             parent: widget.animationController!,
@@ -59,6 +59,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
         }
       }
     });
+    //addSampleMatchInfo();
     super.initState();
   }
 
@@ -68,7 +69,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Management'),
+        title: Text('Next Matche Deatails'),
         centerTitle: true,
         leading: IconButton(icon: Icon(Icons.refresh), onPressed: (){
           bloc.fetchAllMatch();
@@ -97,18 +98,6 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
   //데이터를 그리드뷰에 출력하는 함수
   Widget buildList(AsyncSnapshot<List<MatchSchedule>> snapshot) {
 
-    // List<MatchSchedule> matchlist=snapshot.data!;
-    //
-    // return ListView.builder(
-    //   itemCount:matchlist.length,
-    //   itemBuilder: (context,index){
-    //     return ListTile(
-    //       title: Text(matchlist[index].matchinfo!.starttime.toString()!),
-    //       subtitle: Text(matchlist[index].matchinfo!.team1!),
-    //     );
-    //   },
-    // );
-
     List<MatchSchedule> matchlist=snapshot.data!;
 
     return FutureBuilder<bool>(
@@ -125,13 +114,44 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
             widget.animationController?.forward();
-            return ListTile(
-              title: Text(matchlist[index].matchinfo!.starttime.toString()!),
-              subtitle: Text(matchlist[index].matchinfo!.team1Name!),
+
+            return Card(
+                color: Color(0xfff3f3f3),
+                shadowColor: Color(0x07000000),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(matchlist[index].matchinfo!.starttime.toString()!),
+                    SizedBox(height: 10),
+                    ListTile(
+                      leading: FlutterLogo(size: 72.0),
+                      title: Text(matchlist[index].matchinfo!.starttime.toString()!),
+                      subtitle: Text(matchlist[index].matchinfo!.team1Name!),
+                      trailing: Icon(Icons.more_vert),
+                      isThreeLine: true,
+                      //dense: true,
+                    ),
+                   ],
+                ),
             );
           },
         );
       },
     );
+  }
+  //경기 일정 샘플 등록
+  void addSampleMatchInfo(){
+    DateTime dt = DateTime(2023, 11, 4);
+    DateTime dt2 = dt.add(Duration(days: 7));
+    for(int i=0; i <10; i++) {
+      var date;
+      if(i == 0)
+        date = dt2.year.toString() + dt2.month.toString()+dt2.day.toString();
+      else
+        dt2 = dt2.add(Duration(days:7));
+      date = dt2.year.toString() + dt2.month.toString()+dt2.day.toString();
+      debugPrint(date);
+      bloc.addMatchinfo(date);
+    }
   }
 }

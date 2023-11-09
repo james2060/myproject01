@@ -7,4 +7,6 @@ class Repository {
 
   Future<List<MatchSchedule>> fetchAllMatchInfo() => matchApiProvider.fetchMatchList();
 
+  Future<void> addMatchInfo(String date) => matchApiProvider.AddMatchSchedule(date);
+
 }

@@ -47,19 +47,19 @@ class Matchinfo {
     starttime: DateTime.parse(json["starttime"]),
     endtime: DateTime.parse(json["endtime"]),
     location: json["location"],
-    team1Name: json["team1_name"],
-    team2Name: json["team2_name"],
-    team1Score: json["team1_score"],
-    team2Score: json["team2_score"],
+    team1Name: json["team1name"],
+    team2Name: json["team2name"],
+    team1Score: json["team1score"],
+    team2Score: json["team2score"],
   );
 
   Map<String, dynamic> toJson() => {
     "starttime": starttime.toIso8601String(),
     "endtime": endtime.toIso8601String(),
     "location": location,
-    "team1_name": team1Name,
-    "team2_name": team2Name,
-    "team1_score": team1Score,
-    "team2_score": team2Score,
+    "team1name": team1Name,
+    "team2name": team2Name,
+    "team1score": team1Score,
+    "team2score": team2Score,
   };
 }
