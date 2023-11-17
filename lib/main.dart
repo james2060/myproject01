@@ -6,6 +6,9 @@ import 'package:myproject01/utils/constants.dart';
 import 'package:get/get.dart';
 import 'package:myproject01/controller/auth_controller.dart';
 import 'package:myproject01/controller/match_controller.dart';
+import 'package:myproject01/screen/authentication/user_info_screen.dart';
+import 'package:myproject01/screen/authentication/register_screen.dart';
+import 'package:myproject01/screen/next_match_details_screen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 Future<void> main() async {
 
@@ -17,10 +20,6 @@ Future<void> main() async {
   });
 
   void initialization() async {
-    // This is where you can initialize the resources needed by your app while
-    // the splash screen is displayed.  Remove the following example because
-    // delaying the user experience is a bad design practice!
-    // ignore_for_file: avoid_print
     print('ready in 3...');
     await Future.delayed(const Duration(seconds: 1));
     print('ready in 2...');
@@ -34,14 +33,16 @@ Future<void> main() async {
 
   runApp(GreensApp());
 }
-
-
 class GreensApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Greens',
-      home: const SignInScreen(),
+      //home: const SignInScreen(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => SignInScreen()),
+      ],
     );
   }
 }

@@ -36,3 +36,5 @@ class GlobalData{
   }
 }
 GlobalData gd = GlobalData();
+
+enum Viewtype {next_scehdule_detail, news_detail}

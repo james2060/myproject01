@@ -8,7 +8,7 @@ FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 class FirestoreDb{
 
   //팀 등록
-  void addToTeam(String collectionName, String docName,TeamProfile teamProfile) async {
+  void addToTeam(String collectionName, String docName,TeamInfo teamProfile) async {
     await _firebaseFirestore.collection(collectionName).doc(docName)
         .set( teamProfile.toJson());
   }
@@ -20,7 +20,7 @@ class FirestoreDb{
   }
 
   //경기 일정 등록
-  void addToMatch(String teamid, String collectionName, String docName, MatchSchedule matchSchedule) async {
+  void addToMatch(String team_id, String collectionName, String docName, MatchSchedule matchSchedule) async {
     await _firebaseFirestore.collection(collectionName).doc(docName)
         .set( matchSchedule.toJson());
   }

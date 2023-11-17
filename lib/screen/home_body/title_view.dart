@@ -1,15 +1,19 @@
 import 'package:myproject01/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myproject01/repository/globaldata.dart';
+import 'package:myproject01/screen/next_match_details_screen.dart';
 
 class TitleView extends StatelessWidget {
   final String titleTxt;
   final String subTxt;
+  final Viewtype viewtype;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
   const TitleView(
       {Key? key,
+        this.viewtype = Viewtype.next_scehdule_detail,
       this.titleTxt = '',
       this.subTxt = '',
       this.animationController,
@@ -47,7 +51,12 @@ class TitleView extends StatelessWidget {
                     InkWell(
                       highlightColor: Colors.transparent,
                       borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                      onTap: () {},
+                      onTap: () {
+                        if(Viewtype.next_scehdule_detail == viewtype) {
+                          Get.to(() => NexMatchDetails(title: "Matchs",
+                                animationController: animationController,));
+                        }
+                        },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8),
                         child: Row(

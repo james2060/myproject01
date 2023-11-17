@@ -1,73 +1,77 @@
 // To parse this JSON data, do
 //
-//     final teamModel = teamModelFromJson(jsonString);
+//     final teamInfo = teamInfoFromJson(jsonString);
 
 import 'dart:convert';
 
-TeamModel teamModelFromJson(String str) => TeamModel.fromJson(json.decode(str));
+TeamInfo teamInfoFromJson(String str) => TeamInfo.fromJson(json.decode(str));
 
-String teamModelToJson(TeamModel data) => json.encode(data.toJson());
+String teamInfoToJson(TeamInfo data) => json.encode(data.toJson());
 
-class TeamModel {
-  TeamProfile? teamProfile;
+class TeamInfo {
+  int teamId;
+  String teamName;
+  DateTime createAt;
+  DateTime foundedAt;
+  String homeground;
+  String founder;
+  int playlevel;
+  String desc;
+  bool waitNewmember;
+  bool openTeamInfo;
+  int memberJoinCount;
+  int memberSecedeCount;
+  int memberCurrentCount;
+  int memberWatingCount;
 
-  TeamModel({
-    this.teamProfile,
+  TeamInfo({
+    required this.teamId,
+    required this.teamName,
+    required this.createAt,
+    required this.foundedAt,
+    required this.homeground,
+    required this.founder,
+    required this.playlevel,
+    required this.desc,
+    required this.waitNewmember,
+    required this.openTeamInfo,
+    required this.memberJoinCount,
+    required this.memberSecedeCount,
+    required this.memberCurrentCount,
+    required this.memberWatingCount,
   });
 
-  factory TeamModel.fromJson(Map<String, dynamic> json) => TeamModel(
-    teamProfile: json["TeamProfile"] == null ? null : TeamProfile.fromJson(json["TeamProfile"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "TeamProfile": teamProfile?.toJson(),
-  };
-}
-
-class TeamProfile {
-  int? iteamidx;
-  String? steamname;
-  DateTime? screateDate;
-  String? homeground;
-  String? createdby;
-  int? level;
-  String? desc;
-  bool? waitNewmember;
-  bool? openGroupInfo;
-
-  TeamProfile({
-    this.iteamidx,
-    this.steamname,
-    this.screateDate,
-    this.homeground,
-    this.createdby,
-    this.level,
-    this.desc,
-    this.waitNewmember,
-    this.openGroupInfo,
-  });
-
-  factory TeamProfile.fromJson(Map<String, dynamic> json) => TeamProfile(
-    iteamidx: json["iteamidx"],
-    steamname: json["steamname"],
-    screateDate: json["screate_date"] == null ? null : DateTime.parse(json["screate_date"]),
+  factory TeamInfo.fromJson(Map<String, dynamic> json) => TeamInfo(
+    teamId: json["team_id"],
+    teamName: json["team_name"],
+    createAt: DateTime.parse(json["create_at"]),
+    foundedAt: DateTime.parse(json["founded_at"]),
     homeground: json["homeground"],
-    createdby: json["createdby"],
-    level: json["level"],
+    founder: json["founder"],
+    playlevel: json["playlevel"],
     desc: json["desc"],
     waitNewmember: json["wait_newmember"],
-    openGroupInfo: json["open_group_info"],
+    openTeamInfo: json["open_team_info"],
+    memberJoinCount: json["member_join_count"],
+    memberSecedeCount: json["member_secede_count"],
+    memberCurrentCount: json["member_current_count"],
+    memberWatingCount: json["member_wating_count"],
   );
 
   Map<String, dynamic> toJson() => {
-    "iteamidx": iteamidx,
-    "steamname": steamname,
-    "screate_date": screateDate?.toIso8601String(),
+    "team_id": teamId,
+    "team_name": teamName,
+    "create_at": createAt.toIso8601String(),
+    "founded_at": foundedAt.toIso8601String(),
     "homeground": homeground,
-    "createdby": createdby,
-    "level": level,
+    "founder": founder,
+    "playlevel": playlevel,
     "desc": desc,
     "wait_newmember": waitNewmember,
-    "open_group_info": openGroupInfo,
+    "open_team_info": openTeamInfo,
+    "member_join_count": memberJoinCount,
+    "member_secede_count": memberSecedeCount,
+    "member_current_count": memberCurrentCount,
+    "member_wating_count": memberWatingCount,
   };
 }

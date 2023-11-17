@@ -9,6 +9,8 @@ import 'package:myproject01/screen/home_body/title_view.dart';
 import 'package:myproject01/utils/popup_dialog.dart';
 import 'package:myproject01/screen/home_body/next_match_view.dart';
 import 'package:myproject01/controller/match_controller.dart';
+import 'package:myproject01/repository/globaldata.dart';
+
 class HomeBodyMain extends StatefulWidget {
 
   const HomeBodyMain({this.animationController});
@@ -68,6 +70,7 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
     const int count =  6;
     listViews.add(
         TitleView(
+          viewtype: Viewtype.next_scehdule_detail,
           titleTxt: 'Next Match',
           subTxt: 'Details',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -88,6 +91,7 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
     );
     listViews.add(
         TitleView(
+          viewtype: Viewtype.news_detail,
           titleTxt: 'News',
           subTxt: 'Details',
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(

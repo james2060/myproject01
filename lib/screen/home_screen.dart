@@ -6,6 +6,7 @@ import 'package:myproject01/screen/bottombar_navigation.dart';
 import 'package:myproject01/screen/home_body/home_body_main.dart';
 import 'package:myproject01/screen/next_match_details_screen.dart';
 import 'package:get/get.dart';
+import 'package:myproject01/repository/globaldata.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required User user})
@@ -87,7 +88,6 @@ class _HomeScreenState extends State<HomeScreen>
                   return;
                 }
                 setState(() {
-                  debugPrint('index == 1');
                   tabBody = NexMatchDetails(title: 'MatchList',animationController: animationController);
                   //tabBody = TrainingScreen(animationController: animationController);
                 });

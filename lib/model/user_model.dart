@@ -1,85 +1,81 @@
 // To parse this JSON data, do
 //
-//     final user = userFromJson(jsonString);
+//     final users = usersFromJson(jsonString);
 
 import 'dart:convert';
 
-User userFromJson(String str) => User.fromJson(json.decode(str));
+User usersFromJson(String str) => User.fromJson(json.decode(str));
 
-String userToJson(User data) => json.encode(data.toJson());
+String usersToJson(User data) => json.encode(data.toJson());
 
 class User {
-  Userprofile? userprofile;
+  String name;
+  String email;
+  String id;
+  String cellphone;
+  int groupId;
+  String groupName;
+  DateTime regstryAt;
+  DateTime quitAt;
+  String position1;
+  String position2;
+  DateTime birthday;
+  String experience;
+  String married;
+  String profileImgLink;
+  bool stateofyongbyung;
 
   User({
-    this.userprofile,
+    required this.name,
+    required this.email,
+    required this.id,
+    required this.cellphone,
+    required this.groupId,
+    required this.groupName,
+    required this.regstryAt,
+    required this.quitAt,
+    required this.position1,
+    required this.position2,
+    required this.birthday,
+    required this.experience,
+    required this.married,
+    required this.profileImgLink,
+    required this.stateofyongbyung,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    userprofile: json["userprofile"] == null ? null : Userprofile.fromJson(json["userprofile"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "userprofile": userprofile?.toJson(),
-  };
-}
-
-class Userprofile {
-  String? name;
-  String? age;
-  String? userid;
-  String? userphone;
-  String? groupidx;
-  String? groupname;
-  DateTime? regDate;
-  DateTime? quitDate;
-  String? firstPosition;
-  String? experience;
-  String? married;
-  bool? stateofyongbyung;
-
-  Userprofile({
-    this.name,
-    this.age,
-    this.userid,
-    this.userphone,
-    this.groupidx,
-    this.groupname,
-    this.regDate,
-    this.quitDate,
-    this.firstPosition,
-    this.experience,
-    this.married,
-    this.stateofyongbyung,
-  });
-
-  factory Userprofile.fromJson(Map<String, dynamic> json) => Userprofile(
     name: json["name"],
-    age: json["age"],
-    userid: json["userid"],
-    userphone: json["userphone"],
-    groupidx: json["groupidx"],
-    groupname: json["groupname"],
-    regDate: json["reg_date"] == null ? null : DateTime.parse(json["reg_date"]),
-    quitDate: json["quit_date"] == null ? null : DateTime.parse(json["quit_date"]),
-    firstPosition: json["first_position"],
+    email: json["email"],
+    id: json["id"],
+    cellphone: json["cellphone"],
+    groupId: json["group_id"],
+    groupName: json["group_name"],
+    regstryAt: DateTime.parse(json["regstry_at"]),
+    quitAt: DateTime.parse(json["quit_at"]),
+    position1: json["position1"],
+    position2: json["position2"],
+    birthday: DateTime.parse(json["birthday"]),
     experience: json["experience"],
     married: json["married"],
+    profileImgLink: json["profile_img_link"],
     stateofyongbyung: json["stateofyongbyung"],
   );
 
   Map<String, dynamic> toJson() => {
     "name": name,
-    "age": age,
-    "userid": userid,
-    "userphone": userphone,
-    "groupidx": groupidx,
-    "groupname": groupname,
-    "reg_date": "${regDate!.year.toString().padLeft(4, '0')}-${regDate!.month.toString().padLeft(2, '0')}-${regDate!.day.toString().padLeft(2, '0')}",
-    "quit_date": "${quitDate!.year.toString().padLeft(4, '0')}-${quitDate!.month.toString().padLeft(2, '0')}-${quitDate!.day.toString().padLeft(2, '0')}",
-    "first_position": firstPosition,
+    "email": email,
+    "id": id,
+    "cellphone": cellphone,
+    "group_id": groupId,
+    "group_name": groupName,
+    "regstry_at": "${regstryAt.year.toString().padLeft(4, '0')}-${regstryAt.month.toString().padLeft(2, '0')}-${regstryAt.day.toString().padLeft(2, '0')}",
+    "quit_at": "${quitAt.year.toString().padLeft(4, '0')}-${quitAt.month.toString().padLeft(2, '0')}-${quitAt.day.toString().padLeft(2, '0')}",
+    "position1": position1,
+    "position2": position2,
+    "birthday": "${birthday.year.toString().padLeft(4, '0')}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}",
     "experience": experience,
     "married": married,
+    "profile_img_link": profileImgLink,
     "stateofyongbyung": stateofyongbyung,
   };
 }

@@ -1,17 +1,18 @@
 {
-  "userprofile":{
-    "name":"kisookang",
-    "age": "44",
-    "userid":"verynicesoo78@gmail.com",
-    "userphone":"01028654577",
-    "groupidx": "1",
-    "groupname": "GRIDFC",
-    "reg_date":"2019-09-09",
-    "quit_date":"2022-09-09",
-    "first_position":"AM",
-    "second_position":"CM"
-    "experience":"19year",
-    "married":"single",
-    "stateofyongbyung":false
-  }
+
+  "name":"kisookang",
+  "email": "verynicesoo78@gmail.com",
+  "id":"verynicesoo78@gmail.com",
+  "cellphone":"01028654577",
+  "group_id": 1,
+  "group_name": "GRIDFC",
+  "regstry_at":"2019-09-09",
+  "quit_at":"2022-09-09",
+  "position1":"AM",
+  "position2":"CM",
+  "birthday":"2019-09-09",
+  "experience":"19year",
+  "married":"single",
+  "profile_img_link": "https://",
+  "stateofyongbyung":false
 }

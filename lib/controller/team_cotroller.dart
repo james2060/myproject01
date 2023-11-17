@@ -8,12 +8,4 @@ class TeamController extends GetxController {
   //static TeamController instance = Get.find();
   //late Rx<TeamProfile?> _team;
 
-  final team = TeamModel().obs;
-
-  void onInit() {
-
-  }
-  void fetchTeamData() async{
-
-  }
 }

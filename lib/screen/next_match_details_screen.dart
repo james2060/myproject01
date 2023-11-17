@@ -63,7 +63,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
         }
       }
     });
-    //addSampleMatchInfo();
+    addSampleMatchInfo();
     super.initState();
   }
   Widget getAppBarUI() {
@@ -286,13 +286,13 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
   void addSampleMatchInfo(){
     DateTime dt = DateTime(2023, 11, 4);
     DateTime dt2 = dt.add(Duration(days: 7));
-    for(int i=0; i <10; i++) {
+    for(int i=0; i <3; i++) {
       var date;
       if(i == 0)
         date = dt2.year.toString() + dt2.month.toString()+dt2.day.toString();
       else
         dt2 = dt2.add(Duration(days:7));
-      date = dt2.year.toString() + dt2.month.toString()+dt2.day.toString();
+      date = dt2.year.toString() + dt2.month.toString().padLeft(2,'0')+dt2.day.toString();
       debugPrint(date);
       bloc.addMatchinfo(date);
     }
