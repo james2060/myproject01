@@ -13,8 +13,8 @@ class User {
   String email;
   String id;
   String cellphone;
-  int groupId;
-  String groupName;
+  int teamId;
+  String teamName;
   DateTime regstryAt;
   DateTime quitAt;
   String position1;
@@ -30,8 +30,8 @@ class User {
     required this.email,
     required this.id,
     required this.cellphone,
-    required this.groupId,
-    required this.groupName,
+    required this.teamId,
+    required this.teamName,
     required this.regstryAt,
     required this.quitAt,
     required this.position1,
@@ -48,8 +48,8 @@ class User {
     email: json["email"],
     id: json["id"],
     cellphone: json["cellphone"],
-    groupId: json["group_id"],
-    groupName: json["group_name"],
+    teamId: json["team_id"],
+    teamName: json["tea _name"],
     regstryAt: DateTime.parse(json["regstry_at"]),
     quitAt: DateTime.parse(json["quit_at"]),
     position1: json["position1"],
@@ -66,8 +66,8 @@ class User {
     "email": email,
     "id": id,
     "cellphone": cellphone,
-    "group_id": groupId,
-    "group_name": groupName,
+    "group_id": teamId,
+    "group_name": teamName,
     "regstry_at": "${regstryAt.year.toString().padLeft(4, '0')}-${regstryAt.month.toString().padLeft(2, '0')}-${regstryAt.day.toString().padLeft(2, '0')}",
     "quit_at": "${quitAt.year.toString().padLeft(4, '0')}-${quitAt.month.toString().padLeft(2, '0')}-${quitAt.day.toString().padLeft(2, '0')}",
     "position1": position1,

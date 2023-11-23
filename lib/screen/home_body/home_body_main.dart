@@ -4,10 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:myproject01/screen/authentication/sign_in_screen.dart';
-import 'package:myproject01/screen/home_body/home_news_summary_view.dart';
+import 'package:myproject01/screen/home_body/news_summary_view.dart';
 import 'package:myproject01/screen/home_body/title_view.dart';
 import 'package:myproject01/utils/popup_dialog.dart';
-import 'package:myproject01/screen/home_body/next_match_view.dart';
+import 'package:myproject01/screen/home_body/next_match_summary_view.dart';
+import 'package:myproject01/screen/home_body/team_summary_view.dart';
+import 'package:myproject01/screen/home_body/my_summary_view.dart';
 import 'package:myproject01/controller/match_controller.dart';
 import 'package:myproject01/repository/globaldata.dart';
 
@@ -67,7 +69,10 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
     super.initState();
   }
   void addAllListData(){
-    const int count =  6;
+    const int count =  4;
+    //--------------------------------
+    //Next Matches
+    //--------------------------------
     listViews.add(
         TitleView(
           viewtype: Viewtype.next_scehdule_detail,
@@ -89,6 +94,33 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
           animationController: widget.animationController!
       ),
     );
+    //--------------------------------
+    //Team
+    //--------------------------------
+    listViews.add(
+        TitleView(
+          viewtype: Viewtype.news_detail,
+          titleTxt: 'Team',
+          subTxt: 'Details',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!,
+        )
+    );
+    listViews.add(
+      TeamSummaryView(
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!
+      ),
+    );
+    //--------------------------------
+    //News
+    //--------------------------------
     listViews.add(
         TitleView(
           viewtype: Viewtype.news_detail,
@@ -102,7 +134,31 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
         )
     );
     listViews.add(
-      HomeNewsSummaryView(
+      NewsSummaryView(
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 1, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!
+      ),
+    );
+    //--------------------------------
+    //My Stats
+    //--------------------------------
+    listViews.add(
+        TitleView(
+          viewtype: Viewtype.news_detail,
+          titleTxt: 'My',
+          subTxt: 'Details',
+          animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+              parent: widget.animationController!,
+              curve:
+              Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+          animationController: widget.animationController!,
+        )
+    );
+    listViews.add(
+      MySummaryView(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
               parent: widget.animationController!,
               curve:

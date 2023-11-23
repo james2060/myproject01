@@ -1,5 +1,4 @@
 {
-
   "team_id": 1,
   "team_name": "GRIDFC",
   "create_at":"2019-09-09 17:00:00",
@@ -13,6 +12,6 @@
   "member_join_count": 11,
   "member_secede_count": 3,
   "member_current_count": 8,
-  "member_wating_count" : 1
+  "member_waiting_count" : 1
 
 }

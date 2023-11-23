@@ -1,11 +1,11 @@
 {
-
+  "idx" : 10,
   "name":"kisookang",
   "email": "verynicesoo78@gmail.com",
-  "id":"verynicesoo78@gmail.com",
+  "user_id":"verynicesoo78@gmail.com",
   "cellphone":"01028654577",
-  "group_id": 1,
-  "group_name": "GRIDFC",
+  "team_id": 1,
+  "team_name": "GRIDFC",
   "regstry_at":"2019-09-09",
   "quit_at":"2022-09-09",
   "position1":"AM",

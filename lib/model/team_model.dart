@@ -22,7 +22,7 @@ class TeamInfo {
   int memberJoinCount;
   int memberSecedeCount;
   int memberCurrentCount;
-  int memberWatingCount;
+  int memberWaitingCount;
 
   TeamInfo({
     required this.teamId,
@@ -38,7 +38,7 @@ class TeamInfo {
     required this.memberJoinCount,
     required this.memberSecedeCount,
     required this.memberCurrentCount,
-    required this.memberWatingCount,
+    required this.memberWaitingCount,
   });
 
   factory TeamInfo.fromJson(Map<String, dynamic> json) => TeamInfo(
@@ -55,7 +55,7 @@ class TeamInfo {
     memberJoinCount: json["member_join_count"],
     memberSecedeCount: json["member_secede_count"],
     memberCurrentCount: json["member_current_count"],
-    memberWatingCount: json["member_wating_count"],
+    memberWaitingCount: json["member_waiting_count"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -72,6 +72,6 @@ class TeamInfo {
     "member_join_count": memberJoinCount,
     "member_secede_count": memberSecedeCount,
     "member_current_count": memberCurrentCount,
-    "member_wating_count": memberWatingCount,
+    "member_waiting_count": memberWaitingCount,
   };
 }

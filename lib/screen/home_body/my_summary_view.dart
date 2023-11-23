@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
 
-class HomeNewsSummaryView extends StatelessWidget {
+class MySummaryView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
 
-  const HomeNewsSummaryView(
+  const MySummaryView(
       {Key? key, this.animationController, this.animation})
       : super(key: key);
 
@@ -47,6 +47,9 @@ class HomeNewsSummaryView extends StatelessWidget {
                       const EdgeInsets.only(top: 16, left: 16, right: 16),
                       child: Row(
                         children: <Widget>[
+                          //--------------------------------
+                          // 세로선 표시
+                          //--------------------------------
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -58,12 +61,6 @@ class HomeNewsSummaryView extends StatelessWidget {
                                       Container(
                                         height: 48,
                                         width: 2,
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#87A0E5')
-                                              .withOpacity(0.5),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4.0)),
-                                        ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -93,17 +90,7 @@ class HomeNewsSummaryView extends StatelessWidget {
                                     child: Container(
                                       width: 100,
                                       height: 100,
-                                      decoration: BoxDecoration(
-                                        color: apptheme.white,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(100.0),
-                                        ),
-                                        border: new Border.all(
-                                            width: 4,
-                                            color: apptheme
-                                                .nearlyDarkBlue
-                                                .withOpacity(0.2)),
-                                      ),
+
                                     ),
                                   ),
                                 ],
@@ -113,17 +100,7 @@ class HomeNewsSummaryView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 24, right: 24, top: 8, bottom: 8),
-                      child: Container(
-                        height: 2,
-                        decoration: BoxDecoration(
-                          color: apptheme.background,
-                          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        ),
-                      ),
-                    ),
+
 
                   ],
                 ),
