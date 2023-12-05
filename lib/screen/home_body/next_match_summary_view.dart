@@ -12,6 +12,10 @@ class NextMatchView extends StatelessWidget {
       {Key? key, this.animationController, this.animation})
       : super(key: key);
 
+  void vote_attend() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -99,7 +103,12 @@ class NextMatchView extends StatelessWidget {
                                                 SizedBox(
                                                     width: 28,
                                                     height: 28,
-                                                    child: Icon(Icons.access_time,color: apptheme.grey)
+                                                    child: InkWell(
+                                                        child: Icon(Icons.access_time,color: apptheme.grey),
+                                                      onTap: () {
+                                                          debugPrint("TEST!");
+                                                      },
+                                                    ),
                                                 ),
                                                 Padding(
                                                   padding:
@@ -598,4 +607,5 @@ class CurvePainter extends CustomPainter {
     var redian = (math.pi / 180) * degree;
     return redian;
   }
+
 }

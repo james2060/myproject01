@@ -184,24 +184,20 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
     );
   }
   Widget getMainListViewUI() {
-    return FutureBuilder<bool>(
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          return ListView.builder(
-            controller: scrollController,
-            padding: EdgeInsets.only(
-              top: AppBar().preferredSize.height +
-                  MediaQuery.of(context).padding.top +
-                  24,
-              bottom: 62 + MediaQuery.of(context).padding.bottom,
-            ),
-            itemCount: listViews.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (BuildContext context, int index) {
-              widget.animationController?.forward();
-              return listViews[index];
-            },
-          );
-
+    
+    return ListView.builder(
+      controller: scrollController,
+      padding: EdgeInsets.only(
+        top: AppBar().preferredSize.height +
+            MediaQuery.of(context).padding.top +
+            24,
+        bottom: 62 + MediaQuery.of(context).padding.bottom,
+      ),
+      itemCount: listViews.length,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (BuildContext context, int index) {
+        widget.animationController?.forward();
+        return listViews[index];
       },
     );
   }

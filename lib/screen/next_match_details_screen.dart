@@ -232,20 +232,13 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
           )
     );
   }
+
   //데이터를 그리드뷰에 출력하는 함수
   Widget buildList(AsyncSnapshot<List<MatchSchedule>> snapshot) {
 
     List<MatchSchedule> matchlist=snapshot.data!;
 
-    return FutureBuilder<bool>(
 
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        Text('Matchs',
-            style: TextStyle(
-              fontFamily: "Open Sans",
-              color: Color(0xff000000),
-              fontSize: 12,
-            ));
         return ListView.builder(
           controller: scrollController,
           padding: EdgeInsets.only(
@@ -279,8 +272,6 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
             );
           },
         );
-      },
-    );
   }
   //경기 일정 샘플 등록
   void addSampleMatchInfo(){
