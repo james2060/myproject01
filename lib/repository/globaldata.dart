@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myproject01/TestCrud.dart';
 //전역 데이터
 class GlobalData{
   //Push message count
@@ -33,6 +34,10 @@ class GlobalData{
       this.g_notiCount = 0;
 
     return this.g_notiCount;
+  }
+  void setNewMatch() {
+    TestCrud? test = TestCrud();
+    test.SetNewMatch();
   }
 }
 GlobalData gd = GlobalData();

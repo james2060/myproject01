@@ -19,7 +19,7 @@ class MatchSchedule {
   String toRawJson() => json.encode(toJson());
 
   factory MatchSchedule.fromJson(Map<String, dynamic> json) => MatchSchedule(
-    matchinfo: Matchinfo.fromJson(json["matchinfo"]),
+    matchinfo: Matchinfo.fromJson(json),
   );
 
   Map<String, dynamic> toJson() => {

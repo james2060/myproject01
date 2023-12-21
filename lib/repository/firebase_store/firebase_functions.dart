@@ -9,6 +9,7 @@ import 'package:myproject01/utils/indicator.dart';
 import 'package:get/get.dart';
 
 class FirebaseFunctions {
+  FirebaseFunctions();
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -34,6 +35,22 @@ class FirebaseFunctions {
   //     showAlert(e.toString());
   //   }
   // }
+
+  Future<void> setDataToFbs(String col_name, Map<String, dynamic> jsonData) async {
+    try {
+      String id = generateId();
+      DateTime time = DateTime.now();
+      await _firebaseFirestore
+          .collection(col_name)
+          .doc(id)
+          .set(jsonData)
+          .then((value) {
+          //saveDataToMyBlogs(id);
+      });
+    } catch (e) {
+      showAlert("$e");
+    }
+  }
 
   Future<void> uploadBlog(String title, String description, File image) async {
     try {

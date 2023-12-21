@@ -63,7 +63,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
         }
       }
     });
-    addSampleMatchInfo();
+    //addSampleMatchInfo();
     super.initState();
   }
   Widget getAppBarUI() {
@@ -275,7 +275,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
   }
   //경기 일정 샘플 등록
   void addSampleMatchInfo(){
-    DateTime dt = DateTime(2023, 11, 4);
+    DateTime dt = DateTime(2023, 12, 21);
     DateTime dt2 = dt.add(Duration(days: 7));
     for(int i=0; i <3; i++) {
       var date;

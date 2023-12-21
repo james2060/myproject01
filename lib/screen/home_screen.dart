@@ -71,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen>
           changeIndex: (int index) {
             //Home
             if (index == 0) {
+              gd.setNewMatch();
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   debugPrint('index == 0  mount is false');
@@ -89,7 +90,6 @@ class _HomeScreenState extends State<HomeScreen>
                 }
                 setState(() {
                   tabBody = NexMatchDetails(title: 'MatchList',animationController: animationController);
-                  //tabBody = TrainingScreen(animationController: animationController);
                 });
               });
             } else if (index == 2) {
