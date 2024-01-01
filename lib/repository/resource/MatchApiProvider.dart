@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:get/get.dart';
 import 'package:myproject01/model/match_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,9 +16,9 @@ class MatchApiProvider {
       List<MatchSchedule> m = [];
       return m;
     }
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await collectionReference.orderBy("starttime",descending: false)
-        .get();
-
+    DateTime _now = DateTime.now();
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await collectionReference.where('team1_id', isEqualTo: 1)
+        .orderBy("starttime",descending: false).get();
     ms.clear();
     for( var document in querySnapshot.docs) {
       ms.add(MatchSchedule.fromJson(document.data()));

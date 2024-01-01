@@ -1,23 +1,42 @@
 import 'package:myproject01/apptheme.dart';
 import 'package:myproject01/theme.dart';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
+import 'package:myproject01/model/match_model.dart';
+
+
 
 class NextMatchView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
+  Matchinfo? matchinfo;
 
-  const NextMatchView(
+  NextMatchView(
       {Key? key, this.animationController, this.animation})
       : super(key: key);
 
-  void vote_attend() {
-
+  void vote_attend() {}
+  Future<List<Map>> readJsonFile(String filePath) async {
+    var input = await File(filePath).readAsString();
+    var map = jsonDecode(input);
+    return map['matchinfo'];
   }
+
+  Future<void> readFromJson() async {
+    final String response = await File('assets/json/match_model.json').readAsStringSync();
+    final data = await json.decode(response);
+    this.matchinfo = data['matchinfo'];
+    debugPrint("$this.matchinfo.attendancdCount");
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
+
     return AnimatedBuilder(
       animation: animationController!,
       builder: (BuildContext context, Widget? child) {

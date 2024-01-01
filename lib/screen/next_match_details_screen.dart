@@ -237,8 +237,6 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
   Widget buildList(AsyncSnapshot<List<MatchSchedule>> snapshot) {
 
     List<MatchSchedule> matchlist=snapshot.data!;
-
-
         return ListView.builder(
           controller: scrollController,
           padding: EdgeInsets.only(
@@ -261,7 +259,7 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
                     SizedBox(height: 10),
                     ListTile(
                       leading: FlutterLogo(size: 72.0),
-                      title: Text(matchlist[index].matchinfo!.starttime.toString()!),
+                      title: Text(matchlist[index].matchinfo!.starttime.toDate().toString()!),
                       subtitle: Text(matchlist[index].matchinfo!.team1Name!),
                       trailing: Icon(Icons.more_vert),
                       isThreeLine: true,

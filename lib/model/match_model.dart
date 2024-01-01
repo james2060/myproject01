@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MatchSchedule {
   Matchinfo matchinfo;
 
@@ -31,8 +33,8 @@ class Matchinfo {
   int idx;
   int team1Id;
   int team2Id;
-  DateTime starttime;
-  DateTime endtime;
+  Timestamp starttime;
+  Timestamp endtime;
   String location;
   String team1Name;
   String team2Name;
@@ -62,8 +64,8 @@ class Matchinfo {
     int? idx,
     int? team1Id,
     int? team2Id,
-    DateTime? starttime,
-    DateTime? endtime,
+    Timestamp? starttime,
+    Timestamp? endtime,
     String? location,
     String? team1Name,
     String? team2Name,
@@ -97,8 +99,8 @@ class Matchinfo {
     idx: json["idx"],
     team1Id: json["team1_id"],
     team2Id: json["team2_id"],
-    starttime: DateTime.parse(json["starttime"]),
-    endtime: DateTime.parse(json["endtime"]),
+    starttime: json["starttime"],
+    endtime: json["endtime"],
     location: json["location"],
     team1Name: json["team1_name"],
     team2Name: json["team2_name"],
@@ -113,8 +115,8 @@ class Matchinfo {
     "idx": idx,
     "team1_id": team1Id,
     "team2_id": team2Id,
-    "starttime": starttime.toIso8601String(),
-    "endtime": endtime.toIso8601String(),
+    "starttime": starttime.toString(),
+    "endtime": endtime.toString(),
     "location": location,
     "team1_name": team1Name,
     "team2_name": team2Name,
