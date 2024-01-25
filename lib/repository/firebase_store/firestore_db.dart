@@ -24,7 +24,6 @@ class FirestoreDb{
     await _firebaseFirestore.collection(collectionName).doc(docName)
         .set( matchSchedule.toJson());
   }
-
   //경기 전체 일정
   static Future<List<MatchSchedule> > fetchMatchList(int teamid) async {
 
@@ -43,5 +42,21 @@ class FirestoreDb{
       print("match list size: $itemcount");
 
       return matchschedule;
+  }
+  static Future<MatchSchedule> fetchNextMatch() async {
+    var next=null;
+    DateTime now = DateTime.now();
+    CollectionReference<Map<String, dynamic>> collectionReference =
+    FirebaseFirestore.instance.collection("matchinfo");
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    await collectionReference.where('team1_id', isEqualTo: 1).where('starttime', isGreaterThan: now )
+        .orderBy("starttime",descending: false).limit(1).get();
+
+    for( var document in querySnapshot.docs) {
+     next = MatchSchedule.fromJson(document.data());
+     if(next != null)
+       return next;
+    }
+    return next;
   }
 }

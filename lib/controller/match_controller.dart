@@ -22,5 +22,4 @@ class MatchController extends GetxController {
       matchlist.value = matches;
     }
   }
-
 }

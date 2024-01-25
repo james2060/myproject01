@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen>
           changeIndex: (int index) {
             //Home
             if (index == 0) {
-              gd.setNewMatch();
+              //gd.setNewMatch();
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   debugPrint('index == 0  mount is false');

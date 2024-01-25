@@ -10,8 +10,10 @@ import 'package:myproject01/utils/popup_dialog.dart';
 import 'package:myproject01/screen/home_body/next_match_summary_view.dart';
 import 'package:myproject01/screen/home_body/team_summary_view.dart';
 import 'package:myproject01/screen/home_body/my_summary_view.dart';
-import 'package:myproject01/controller/match_controller.dart';
 import 'package:myproject01/repository/globaldata.dart';
+import 'package:myproject01/controller/next_match_controller.dart';
+import 'package:get/get.dart';
+import 'dart:io';
 
 class HomeBodyMain extends StatefulWidget {
 
@@ -32,10 +34,8 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
 
-
   @override
   void initState() {
-
     debugPrint("HomeMatchSummeryState - initState");
     topBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
@@ -85,6 +85,9 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
           animationController: widget.animationController!,
         )
     );
+    //NextMatchView 데이터 컨트롤러 등록
+    Get.put(NextMatchController());
+
     listViews.add(
       NextMatchView(
           animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -184,7 +187,6 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
     );
   }
   Widget getMainListViewUI() {
-    
     return ListView.builder(
       controller: scrollController,
       padding: EdgeInsets.only(

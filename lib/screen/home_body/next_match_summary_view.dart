@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:myproject01/apptheme.dart';
+import 'package:myproject01/controller/next_match_controller.dart';
 import 'package:myproject01/theme.dart';
 import 'dart:convert';
 import 'dart:io';
@@ -6,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
 import 'package:myproject01/model/match_model.dart';
-
-
-
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 class NextMatchView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
@@ -17,30 +18,21 @@ class NextMatchView extends StatelessWidget {
   NextMatchView(
       {Key? key, this.animationController, this.animation})
       : super(key: key);
-
-  void vote_attend() {}
-  Future<List<Map>> readJsonFile(String filePath) async {
-    var input = await File(filePath).readAsString();
-    var map = jsonDecode(input);
-    return map['matchinfo'];
+  String readTimestamp(Timestamp? date){
+    DateTime createdDate = date!.toDate();
+    String matchdate = DateFormat.MMMd('en_US').add_jm().format(createdDate);
+    debugPrint(matchdate);
+    return matchdate;
   }
-
-  Future<void> readFromJson() async {
-    final String response = await File('assets/json/match_model.json').readAsStringSync();
-    final data = await json.decode(response);
-    this.matchinfo = data['matchinfo'];
-    debugPrint("$this.matchinfo.attendancdCount");
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
-
+    //컨트롤러를 통해 최신 데이터를 가져온다.
+    final NextMatchController controller = Get.find();
+    controller.fetchNextMatch();
     return AnimatedBuilder(
       animation: animationController!,
       builder: (BuildContext context, Widget? child) {
-        return FadeTransition(
+        return Obx(() => FadeTransition(
           opacity: animation!,
           child: new Transform(
             transform: new Matrix4.translationValues(
@@ -99,8 +91,7 @@ class NextMatchView extends StatelessWidget {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 4, bottom: 2),
-                                              child: Text(
-                                                'GridFC vs 스트레인져스',
+                                              child: Text('${controller.nextmatch.value?.matchinfo.team1Name} vs ${controller.nextmatch.value?.matchinfo.team2Name}',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily:
@@ -134,7 +125,7 @@ class NextMatchView extends StatelessWidget {
                                                   const EdgeInsets.only(
                                                       left: 4, bottom: 3),
                                                   child: Text(
-                                                    '8/4(토) 7-9 AM',
+                                                    '${readTimestamp(controller.nextmatch.value?.matchinfo.starttime)}',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
@@ -168,7 +159,7 @@ class NextMatchView extends StatelessWidget {
                                                   const EdgeInsets.only(
                                                       left: 4, bottom: 3),
                                                   child: Text(
-                                                    '서울디지털운동장',
+                                                    '${controller.nextmatch.value?.matchinfo.location}',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily:
@@ -506,7 +497,7 @@ class NextMatchView extends StatelessWidget {
               ),
             ),
           ),
-        );
+        ));
       },
     );
   }

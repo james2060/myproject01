@@ -52,6 +52,7 @@ class FirebaseFunctions {
     }
   }
 
+
   Future<void> uploadBlog(String title, String description, File image) async {
     try {
       String id = generateId();
