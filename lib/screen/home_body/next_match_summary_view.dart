@@ -333,7 +333,7 @@ class NextMatchView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    ' 승',
+                                    '${controller.record.value?.relativeinfo?.win} 승',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: apptheme.fontName,
@@ -402,7 +402,7 @@ class NextMatchView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '5 무',
+                                        '${controller.record.value?.relativeinfo?.draw} 무',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: apptheme.fontName,
@@ -473,7 +473,7 @@ class NextMatchView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Text(
-                                        '5 패',
+                                        '${controller.record.value?.relativeinfo?.lose} 패',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: apptheme.fontName,

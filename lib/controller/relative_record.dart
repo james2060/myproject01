@@ -1,13 +1,18 @@
 
 class RelativeRecord{
 
-  int _win=0;
-  int _draw=0;
-  int _lose=0;
+  Relativeinfo? relativeinfo;
 
-  RelativeRecord(int win, int draw, int lose){
-    this._win = win;
-    this._draw = draw;
-    this._lose = lose;
-  }
+}
+
+class Relativeinfo {
+  int win;
+  int draw;
+  int lose;
+
+  Relativeinfo({
+    required this.win,
+    required this.draw,
+    required this.lose,
+  });
 }

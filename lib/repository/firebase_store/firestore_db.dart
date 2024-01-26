@@ -63,7 +63,7 @@ class FirestoreDb{
     return next;
   }
   //상대 전적/평균 실점
-  static Future<RelativeRecord> fetchRelativeRecord(int team1_id, int team2_id) async {
+  static Future<RelativeRecord?> fetchRelativeRecord(int team1_id, int team2_id) async {
     int win = 0;
     int draw = 0;
     int lose = 0;
@@ -77,37 +77,26 @@ class FirestoreDb{
            (res) => draw=res.count,
             onError: (e) => debugPrint('Error: $e'),
     );
-
     await collectionReference.where('team1_id', isEqualTo: team1_id).
     where('team2_id', isEqualTo: team2_id ).where('result', isEqualTo: 2)
         .count().get().then(
           (res) => win=res.count,
       onError: (e) => debugPrint('Error: $e'),
     );
-
     await collectionReference.where('team1_id', isEqualTo: team1_id).
     where('team2_id', isEqualTo: team2_id ).where('result', isEqualTo: 0)
         .count().get().then(
           (res) => lose=res.count,
       onError: (e) => debugPrint('Error: $e'),
     );
-    RelativeRecord record = RelativeRecord(win,draw,lose);
+
+    RelativeRecord? record;
+
+    record?.relativeinfo?.draw = draw;
+    record?.relativeinfo?.lose = lose;
+    record?.relativeinfo?.win = win;
+
     return record;
-  }
-  //상대 전적/평균 실점
-  static Future<int> fetchRelativeRecordWin(int team1_id, int team2_id, int result_type) async {
-    int count = 0;
-
-    CollectionReference<Map<String, dynamic>> collectionReference =
-    FirebaseFirestore.instance.collection("matchinfo");
-
-    await collectionReference.where('team1_id', isEqualTo: team1_id).
-    where('team2_id', isEqualTo: team2_id ).where('result', isEqualTo: result_type)
-        .count().get().then(
-          (res) => count=res.count,
-      onError: (e) => debugPrint('Error: $e'),
-    );
-   return count;
   }
 }
 
