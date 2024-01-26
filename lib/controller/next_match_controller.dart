@@ -15,6 +15,5 @@ class NextMatchController extends GetxController {
   void fetchNextMatch() async{
     nextmatch.value = await FirestoreDb.fetchNextMatch();
     record.value = await FirestoreDb.fetchRelativeRecord(1, 2);
-    debugPrint(record.value?.relativeinfo?.win.toString());
   }
 }

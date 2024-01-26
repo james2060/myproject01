@@ -90,11 +90,7 @@ class FirestoreDb{
       onError: (e) => debugPrint('Error: $e'),
     );
 
-    RelativeRecord? record;
-
-    record?.relativeinfo?.draw = draw;
-    record?.relativeinfo?.lose = lose;
-    record?.relativeinfo?.win = win;
+    RelativeRecord? record = RelativeRecord(win: win, draw: draw, lose: lose);
 
     return record;
   }
