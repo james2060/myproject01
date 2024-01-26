@@ -41,7 +41,7 @@ class Matchinfo {
   int team1Score;
   int team2Score;
   int result;
-  int attendancdCount;
+  int attendancedCount;
   int nonappearanceCount;
 
   Matchinfo({
@@ -56,7 +56,7 @@ class Matchinfo {
     required this.team1Score,
     required this.team2Score,
     required this.result,
-    required this.attendancdCount,
+    required this.attendancedCount,
     required this.nonappearanceCount,
   });
 
@@ -72,7 +72,7 @@ class Matchinfo {
     int? team1Score,
     int? team2Score,
     int? result,
-    int? attendancdCount,
+    int? attendancedCount,
     int? nonappearanceCount,
   }) =>
       Matchinfo(
@@ -87,7 +87,7 @@ class Matchinfo {
         team1Score: team1Score ?? this.team1Score,
         team2Score: team2Score ?? this.team2Score,
         result: result ?? this.result,
-        attendancdCount: attendancdCount ?? this.attendancdCount,
+        attendancedCount: attendancedCount ?? this.attendancedCount,
         nonappearanceCount: nonappearanceCount ?? this.nonappearanceCount,
       );
 
@@ -107,7 +107,7 @@ class Matchinfo {
     team1Score: json["team1_score"],
     team2Score: json["team2_score"],
     result: json["result"],
-    attendancdCount: json["attendancd_count"],
+    attendancedCount: json["attendanced_count"],
     nonappearanceCount: json["nonappearance_count"],
   );
 
@@ -123,7 +123,7 @@ class Matchinfo {
     "team1_score": team1Score,
     "team2_score": team2Score,
     "result": result,
-    "attendancd_count": attendancdCount,
+    "attendancedCount": attendancedCount,
     "nonappearance_count": nonappearanceCount,
   };
 }

@@ -333,7 +333,7 @@ class NextMatchView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 6),
                                   child: Text(
-                                    '11 승',
+                                    ' 승',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: apptheme.fontName,
