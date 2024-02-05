@@ -170,11 +170,10 @@ class _NexMatchDetailsState extends State<NexMatchDetails> {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(32.0)),
                                 onTap: () async {
-
                                   bool result = await showAlertDialog(context, "로그아웃 하시겠습니까?", "");
                                   if(result){
                                     await FirebaseAuth.instance.signOut();
-                                    // Get.to(SignInScreen());
+                                    // Get.to(SignInScreen(시));
                                     Get.offAll(SignInScreen());
                                     debugPrint("FirebaseAuth sign out...");
                                   }

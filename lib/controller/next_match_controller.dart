@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:myproject01/model/match_model.dart';
 import 'package:myproject01/repository/firebase_store/firestore_db.dart';
-import 'package:myproject01/controller/relative_record.dart';
+import 'package:myproject01/model/relative_record.dart';
 import 'package:flutter/foundation.dart';
 class NextMatchController extends GetxController {
 

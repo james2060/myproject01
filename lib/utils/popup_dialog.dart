@@ -5,7 +5,6 @@ Future<bool> showAlertDialog(BuildContext context, String title, String message)
   Widget cancelButton = ElevatedButton(
     child: Text("취소"),
     onPressed: () {
-      // returnValue = false;
       Navigator.of(context).pop(false);
     },
   );

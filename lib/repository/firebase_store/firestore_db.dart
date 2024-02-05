@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:myproject01/model/team_model.dart';
 import 'package:myproject01/model/match_model.dart';
 import 'package:myproject01/model/user_model.dart';
-import 'package:myproject01/controller/relative_record.dart';
+import 'package:myproject01/model/relative_record.dart';
 import 'dart:developer';
 
 FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

@@ -203,8 +203,6 @@ class _HomeBodyMainState extends State<HomeBodyMain> with TickerProviderStateMix
       },
     );
   }
-
-
   Widget getAppBarUI() {
     return Column(
       children: <Widget>[

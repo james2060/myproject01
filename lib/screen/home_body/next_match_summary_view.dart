@@ -10,14 +10,23 @@ import 'dart:math' as math;
 import 'package:myproject01/model/match_model.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-class NextMatchView extends StatelessWidget {
+class NextMatchView extends StatefulWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
-  Matchinfo? matchinfo;
 
   NextMatchView(
       {Key? key, this.animationController, this.animation})
       : super(key: key);
+
+  @override
+  State<NextMatchView> createState() => _NextMatchViewState();
+}
+
+class _NextMatchViewState extends State<NextMatchView> {
+  Matchinfo? matchinfo;
+
+  bool isLiked = false;
+  String attendanceText = '';
   String readTimestamp(Timestamp? date){
     DateTime createdDate = date!.toDate();
     String matchdate = DateFormat.MMMd('en_US').add_jm().format(createdDate);
@@ -30,13 +39,13 @@ class NextMatchView extends StatelessWidget {
     final NextMatchController controller = Get.find();
     controller.fetchNextMatch();
     return AnimatedBuilder(
-      animation: animationController!,
+      animation: widget.animationController!,
       builder: (BuildContext context, Widget? child) {
         return Obx(() => FadeTransition(
-          opacity: animation!,
+          opacity: widget.animation!,
           child: new Transform(
             transform: new Matrix4.translationValues(
-                0.0, 30 * (1.0 - animation!.value), 0.0),
+                0.0, 30 * (1.0 - widget.animation!.value), 0.0),
             child: Padding(
               padding: const EdgeInsets.only(
                   left: 24, right: 24, top: 16, bottom: 18),
@@ -116,7 +125,6 @@ class NextMatchView extends StatelessWidget {
                                                     child: InkWell(
                                                         child: Icon(Icons.access_time,color: apptheme.grey),
                                                       onTap: () {
-                                                          debugPrint("TEST!");
                                                       },
                                                     ),
                                                 ),
@@ -139,8 +147,6 @@ class NextMatchView extends StatelessWidget {
                                                     ),
                                                   ),
                                                 ),
-
-
                                               ],
                                             ),
                                             Row(
@@ -214,7 +220,7 @@ class NextMatchView extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            '${(13 * animation!.value).toInt()}',
+                                            '${(13 * widget.animation!.value).toInt()}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
@@ -254,7 +260,7 @@ class NextMatchView extends StatelessWidget {
                                           ],
                                           angle: 140 +
                                               (360 - 140) *
-                                                  (1.0 - animation!.value)),
+                                                  (1.0 - widget.animation!.value)),
                                       child: SizedBox(
                                         width: 108,
                                         height: 108,
@@ -264,9 +270,36 @@ class NextMatchView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 24, right: 24, top: 0, bottom: 0),
+                        child: Row(
+                          children: <Widget>[
+                            IconButton(
+                                icon: Icon(
+                                  isLiked ? Icons.favorite : Icons.favorite_border,
+                                  color: isLiked ? Colors.red : null,
+                                ),
+                                onPressed: (){
+                                  setState(() {
+                                    isLiked = !isLiked;
+                                    debugPrint('heart icon state: ${!isLiked}');
+                                    if(isLiked) {
+                                      attendanceText = '(참석)Very Good, You are Nice!!';
+                                    }
+                                    else{
+                                      attendanceText = '(불참)So Sad!';
+                                    }
+                                  });
+                                }),
+                            Text(attendanceText),
+                          ],
+                        ),
+
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -314,7 +347,7 @@ class NextMatchView extends StatelessWidget {
                                     child: Row(
                                       children: <Widget>[
                                         Container(
-                                          width: ((70 / 1.2) * animation!.value),
+                                          width: ((70 / 1.2) * widget.animation!.value),
                                           height: 4,
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(colors: [
@@ -382,7 +415,7 @@ class NextMatchView extends StatelessWidget {
                                           children: <Widget>[
                                             Container(
                                               width: ((70 / 2) *
-                                                  animationController!.value),
+                                                  widget.animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
                                                 gradient:
@@ -453,7 +486,7 @@ class NextMatchView extends StatelessWidget {
                                           children: <Widget>[
                                             Container(
                                               width: ((70 / 2.5) *
-                                                  animationController!.value),
+                                                  widget.animationController!.value),
                                               height: 4,
                                               decoration: BoxDecoration(
                                                 gradient:
@@ -502,7 +535,6 @@ class NextMatchView extends StatelessWidget {
     );
   }
 }
-
 class CurvePainter extends CustomPainter {
   final double? angle;
   final List<Color>? colors;
