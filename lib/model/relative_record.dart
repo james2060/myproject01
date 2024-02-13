@@ -1,8 +1,8 @@
 
 class RelativeRecord{
-  int win;
-  int draw;
-  int lose;
+  int? win;
+  int? draw;
+  int? lose;
 
   RelativeRecord({
     required this.win,

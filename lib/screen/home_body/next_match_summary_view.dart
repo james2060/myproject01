@@ -27,8 +27,12 @@ class _NextMatchViewState extends State<NextMatchView> {
 
   bool isLiked = false;
   String attendanceText = '';
+  DateTime createdDate = DateTime.now();
   String readTimestamp(Timestamp? date){
-    DateTime createdDate = date!.toDate();
+    if(date != null){
+      DateTime createdDate = date!.toDate();
+    }
+
     String matchdate = DateFormat.MMMd('en_US').add_jm().format(createdDate);
     debugPrint(matchdate);
     return matchdate;

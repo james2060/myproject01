@@ -64,9 +64,9 @@ class FirestoreDb{
   }
   //상대 전적/평균 실점
   static Future<RelativeRecord?> fetchRelativeRecord(int team1_id, int team2_id) async {
-    int win = 0;
-    int draw = 0;
-    int lose = 0;
+    int? win = 0;
+    int? draw = 0;
+    int? lose = 0;
 
     CollectionReference<Map<String, dynamic>> collectionReference =
     FirebaseFirestore.instance.collection("matchinfo");

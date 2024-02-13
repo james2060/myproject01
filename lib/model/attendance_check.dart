@@ -3,7 +3,7 @@ class AttendanceCheck{
   bool isAttendanced;
   DateTime updateTime;
   String status;
-  Stromg reason;
+  String reason;
 
   AttendanceCheck({
     required this.isAttendanced,
