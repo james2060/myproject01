@@ -26,13 +26,14 @@ class _NextMatchViewState extends State<NextMatchView> {
   Matchinfo? matchinfo;
 
   bool isLiked = false;
-  String attendanceText = '';
+  String attendanceText = '참석/불참 체크해 주세요';
+  int attendanced_count = 0;
   DateTime createdDate = DateTime.now();
+  // Convert TimeStamp to String
   String readTimestamp(Timestamp? date){
     if(date != null){
-      DateTime createdDate = date!.toDate();
+      createdDate = date!.toDate();
     }
-
     String matchdate = DateFormat.MMMd('en_US').add_jm().format(createdDate);
     debugPrint(matchdate);
     return matchdate;
@@ -224,7 +225,7 @@ class _NextMatchViewState extends State<NextMatchView> {
                                         CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                            '${(13 * widget.animation!.value).toInt()}',
+                                            '${controller.nextmatch.value?.matchinfo.attendancedCount}',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
@@ -293,11 +294,14 @@ class _NextMatchViewState extends State<NextMatchView> {
                                     isLiked = !isLiked;
                                     debugPrint('heart icon state: ${!isLiked}');
                                     if(isLiked) {
-                                      attendanceText = '(참석)Very Good, You are Nice!!';
+                                      attendanceText = '참석합니다.';
                                     }
                                     else{
-                                      attendanceText = '(불참)So Sad!';
+                                      attendanceText = '불참합니다.';
                                     }
+                                    controller.updateAttendance(isLiked, 1, 1, 1);
+                                    controller.upsertAttendance_info(isLiked, 1, 1, 1);
+                                    controller.fetchNextMatch();
                                   });
                                 }),
                             Text(attendanceText),
